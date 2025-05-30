@@ -1,0 +1,100 @@
+<!-- TODO: Considerar crear componente header o breadcumb -->
+<header class="mat-elevation-z1">
+  <h3>Listado de tareas</h3>
+  <button mat-icon-button [matMenuTriggerFor]="userActions">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userActions="matMenu">
+    @if (userData) {
+    <button mat-menu-item>
+      <small>Sesión iniciada como: {{ userData.email }}</small>
+    </button>
+    <mat-divider class="my-2"></mat-divider>
+    }
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span> Cerrar sesión </span>
+    </button>
+  </mat-menu>
+</header>
+
+<div class="main-container">
+  <!-- TODO: mostrar loading -->
+  <div class="example-table-container">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      aria-label="Listado de tareas"
+      matSortActive="createdAt"
+      matSortDisableClear
+      matSortDirection="desc"
+    >
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+        <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Fecha
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.createdAt | date : 'medium' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>¿Completada?</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            [disabled]="isUpdating()"
+            [checked]="row.completed"
+            (change)="onUpdateStateTask(row)"
+            color="primary"
+          ></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          <button
+            color="primary"
+            mat-raised-button
+            (click)="openModalCreateTask()"
+          >
+            Nueva tarea
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let row" class="col-actions">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="table-menu">
+            <button mat-menu-item (click)="openEditTask(row)">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="openDeleteTask(row)">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="6">
+          <app-empty-data></app-empty-data>
+        </td>
+      </tr>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

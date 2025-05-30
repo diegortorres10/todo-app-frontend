@@ -1,0 +1,44 @@
+.dialog-header {
+  display: flex;
+  padding: 16px 16px 0px 16px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+  margin-right: 20px;
+}
+
+.icon {
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+}
+
+.content-container {
+  flex: 1;
+}
+
+.dialog-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  // color: rgba(0, 0, 0, 0.87);
+}
+
+.dialog-message {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  // color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+mat-dialog-actions {
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+  // border-top: 1px solid rgba(0, 0, 0, 0.12);
+}

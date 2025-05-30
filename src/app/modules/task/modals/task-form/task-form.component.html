@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>
+  @if (isEditMode) { Actualizar tarea } @else { Nueva tarea }
+</h2>
+<mat-dialog-content>
+  <form [formGroup]="taskForm" class="form-container mt-1">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Realizar compras"
+        formControlName="title"
+      />
+      @if (taskForm.get('title')?.errors?.['required']) {
+      <mat-error> El título es requerido </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Descripción</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Listado de compras"
+        formControlName="description"
+      />
+      @if (taskForm.get('description')?.errors?.['required']) {
+      <mat-error> La descripción es requerida </mat-error>
+      }
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close [disabled]="isLoading()">
+    Cancelar
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="isLoading()"
+    (click)="onSaveForm()"
+  >
+    @if (isEditMode) { Actualizar tarea } @else { Crear tarea }
+  </button>
+</mat-dialog-actions>

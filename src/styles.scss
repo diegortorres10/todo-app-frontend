@@ -1,0 +1,45 @@
+@import 'assets/styles/theme';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, 'Helvetica Neue', sans-serif;
+}
+
+// Contendor principal
+.main-container {
+  text-align: justify;
+  padding: 1.5rem 3rem;
+}
+
+// Textos
+.good-luck-txt {
+  color: #ff6600;
+  font-weight: bold;
+}
+
+// Formlario
+.form-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+}
+
+// Helpers
+.w-full {
+  width: 100% !important;
+}
+
+.mt-1 {
+  margin-top: 1em !important;
+}
+
+.toast-container {
+  .toast-success {
+    background-color: #ff6600;
+  }
+}

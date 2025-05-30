@@ -1,0 +1,50 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">Iniciar sesión</h2>
+
+    <form [formGroup]="loginForm" class="form-container mt-1">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Ingresa tu correo</mat-label>
+        <input
+          matInput
+          placeholder="correo@ejemplo.com"
+          type="email"
+          formControlName="email"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+        @if (loginForm.get('email')?.errors?.['required']) {
+        <mat-error> El correo es requerido </mat-error>
+        } @if (loginForm.get('email')?.errors?.['email']) {
+        <mat-error> Ingresa un correo válido </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Mensaje de validación -->
+      @if (errors.length) {
+      <div class="auth-error-message">
+        <mat-icon style="vertical-align: middle; margin-right: 8px"
+          >error</mat-icon
+        >
+        Error (es)
+        <ul>
+          @for(error of errors; track error.field) {
+          <li>{{ error.message }}</li>
+          }
+        </ul>
+      </div>
+      }
+
+      <!-- Botón -->
+      <button
+        class="w-full"
+        mat-raised-button
+        color="primary"
+        [disabled]="loginForm.invalid || isLoading()"
+        (click)="onLogin()"
+      >
+        <!-- TODO: mostrar loading -->
+        {{ isLoading() ? 'Iniciando sesión...' : 'Iniciar sesión' }}
+      </button>
+    </form>
+  </div>
+</div>

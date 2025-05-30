@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Crear cuenta</h2>
+<mat-dialog-content>
+  <p>
+    El correo <strong>{{ userEmail }}</strong> no está registrado. ¿Deseas crear
+    una nueva cuenta?
+  </p>
+  <form [formGroup]="registerForm" class="form-container mt-1">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Correo</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Ingresa email"
+        formControlName="email"
+      />
+      @if (registerForm.get('email')?.errors?.['required']) {
+      <mat-error> El correo es requerido </mat-error>
+      } @if (registerForm.get('email')?.errors?.['email']) {
+      <mat-error> Ingresa un correo válido </mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Ingresa tu nombre completo"
+        formControlName="name"
+      />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="onCancel()" [disabled]="isLoading()">
+    Cancelar
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="registerForm.invalid || isLoading()"
+    (click)="onRegister()"
+  >
+    <!-- TODO: mostrar loading -->
+    {{ isLoading() ? 'Creando cuenta...' : 'Crear cuenta' }}
+  </button>
+</mat-dialog-actions>
