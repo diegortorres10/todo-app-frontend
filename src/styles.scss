@@ -43,3 +43,23 @@ body {
     background-color: #ff6600;
   }
 }
+
+// Dialog
+.mat-mdc-dialog-actions {
+  padding: 8px 24px 24px 24px !important;
+}
+
+//Button
+.mdc-button__label {
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .mat-dialog-actions {
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -68,7 +68,7 @@ export class TaskPageComponent {
     'actions',
   ];
 
-  // TODO: conteo de tareas que venga desde api
+  // TODO: conteo de tareas que venga desde api. Aplicar sort a la tabla
   private toast = inject(ToastrService);
   private taskUseCase = inject(TaskUseCase);
   private authService = inject(AuthService);

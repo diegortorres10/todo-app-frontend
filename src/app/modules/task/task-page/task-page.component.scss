@@ -9,3 +9,68 @@ header {
 .col-actions {
   padding: 0 !important;
 }
+
+
+.example-table-container {
+  height: 100%;
+  overflow: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  
+  // Scroll movil
+  @media (max-width: 768px) {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+
+.mat-table {
+  width: 100%;
+  min-width: 600px;
+  
+  @media (max-width: 768px) {
+    min-width: 800px;
+  }
+}
+
+.mat-column-title {
+  width: 25%;
+  min-width: 150px;
+}
+
+.mat-column-description {
+  width: 30%;
+  min-width: 200px;
+  
+  /* Truncar texto largo */
+  .mat-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.mat-column-createdAt {
+  width: 20%;
+  min-width: 120px;
+}
+
+.mat-column-state {
+  width: 15%;
+  min-width: 100px;
+  text-align: center;
+}
+
+.mat-column-actions {
+  width: 10%;
+  min-width: 120px;
+  text-align: center;
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .mat-column-description {
+    display: none;
+  }
+}
